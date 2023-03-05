@@ -63,43 +63,5 @@ def main():
         for i in range(3):
             st.write("%d. %s (%.2f%%)" % (i + 1, labels[top_3_indices[i]], probs[top_3_indices[i]] * 100))
 
-<<<<<<< HEAD
-import socket
-import time
-
-# Define the domain you want to measure the latency for
-domain = "https://google.com/"
-
-# Define a function to measure the latency
-def measure_latency(domain):
-    # Create a socket object
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Set a timeout of 5 seconds
-    s.settimeout(5)
-    # Start the timer
-    start_time = time.time()
-    try:
-        # Connect to the domain
-        s.connect((domain, 80))
-    except socket.error as e:
-        # Return -1 if there was an error connecting to the domain
-        return -1
-    # Stop the timer and calculate the latency
-    latency = time.time() - start_time
-    # Close the socket object
-    s.close()
-    # Return the latency in milliseconds
-    return latency * 1000
-
-# Call the measure_latency function and show the result
-domain_latency = measure_latency(domain)
-if domain_latency != -1:
-    st.write("Domain latency:", domain_latency, "ms")
-else:
-    st.write("Error: Could not connect to the domain")
-
-
-=======
->>>>>>> parent of 30345b0 (adding domain latency)
 if __name__ == '__main__':
     main()
