@@ -63,6 +63,7 @@ def main():
         for i in range(3):
             st.write("%d. %s (%.2f%%)" % (i + 1, labels[top_3_indices[i]], probs[top_3_indices[i]] * 100))
 
+<<<<<<< HEAD
 import socket
 import time
 
@@ -98,5 +99,7 @@ else:
     st.write("Error: Could not connect to the domain")
 
 
+=======
+>>>>>>> parent of 30345b0 (adding domain latency)
 if __name__ == '__main__':
     main()
