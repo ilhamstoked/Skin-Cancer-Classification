@@ -1,6 +1,10 @@
 import streamlit as st
 import numpy as np
 import tensorflow as tf
+from tcp_latency import measure_latency
+
+# Measure Latency
+latency = measure_latency(host='35.201.127.49', port=443)
 
 # Load TensorFlow Lite model
 interpreter = tf.lite.Interpreter(model_path="InceptionResNetV2Skripsi.tflite")
@@ -45,7 +49,8 @@ def main():
     st.text("'df' - dermatofibroma, 'nv' - melanocytic nevi, 'mel' - melanoma,")
     st.text("'vasc' - vascular skin lesions (Cherry Angiomas, Angiokeratomas, Pyogenic Granulomas.")
     st.write("Due to imperfection of the model and a room of improvement for the future, if the probabilities shown are less than 70%, the skin is either healthy or the input image is unclear. This means that the model can be the first diagnostic of your skin illness. As precautions for your skin illness, it is better to do consultation with dermatologist. ")
-
+    st.write(latency[0])
+    
     # Get the input image from the user
     image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
