@@ -1,17 +1,6 @@
 import streamlit as st
 import numpy as np
 import tensorflow as tf
-import time
-from tcp_latency import measure_latency
-
-# Define your model host and port
-model_host = "your_model_host"
-model_port = your_model_port
-
-# Measure the domain latency
-with st.spinner('Measuring domain latency...'):
-    latency = measure_latency(host=model_host, port=model_port)
-st.write("Domain latency:", latency, "ms")
 
 # Load TensorFlow Lite model
 interpreter = tf.lite.Interpreter(model_path="InceptionResNetV2Skripsi.tflite")

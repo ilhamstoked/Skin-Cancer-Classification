@@ -1,3 +1,5 @@
 streamlit
 tensorflow
 numpy
+time
+tcp_latency
