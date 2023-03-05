@@ -1,25 +1,17 @@
 import streamlit as st
 import numpy as np
 import tensorflow as tf
+import time
 from tcp_latency import measure_latency
-import socket
 
-# Measure domain latency
-def get_domain_latency(domain, port):
-    try:
-        ip = socket.gethostbyname(domain)
-        latency = measure_latency(host=ip, port=port)
-        return latency
-    except:
-        return None
+# Define your model host and port
+model_host = "your_model_host"
+model_port = your_model_port
 
-domain = "your_domain.com"
-port = 80
-latency = get_domain_latency(domain, port)
-if latency is not None:
-    st.write("Domain latency:", round(latency, 2), "ms")
-else:
-    st.write("Failed to measure domain latency")
+# Measure the domain latency
+with st.spinner('Measuring domain latency...'):
+    latency = measure_latency(host=model_host, port=model_port)
+st.write("Domain latency:", latency, "ms")
 
 # Load TensorFlow Lite model
 interpreter = tf.lite.Interpreter(model_path="InceptionResNetV2Skripsi.tflite")
