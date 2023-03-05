@@ -67,7 +67,7 @@ import socket
 import time
 
 # Define the domain you want to measure the latency for
-domain = "https://ilhamstoked-skripsistreamlit-app1-3x1au1.streamlit.app/"
+domain = "https://google.com/"
 
 # Define a function to measure the latency
 def measure_latency(domain):
