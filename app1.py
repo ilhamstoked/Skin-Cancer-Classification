@@ -4,7 +4,8 @@ import tensorflow as tf
 from tcp_latency import measure_latency
 
 # Measure Latency
-latency = measure_latency(host='35.201.127.49', port=443)
+latency = measure_latency(host='192.168.18.6', port=8501)
+#35.201.127.49:443
 
 # Load TensorFlow Lite model
 interpreter = tf.lite.Interpreter(model_path="InceptionResNetV2Skripsi.tflite")
@@ -43,11 +44,21 @@ from PIL import Image
 def main():
     st.title("Skin Cancer Classification")
 
+    st.write("The application allows users to quickly and easily check for signs of skin cancer from the comfort of their own homes. It's important to note that the application is not a substitute for medical advice, but rather a tool to help users identify potential skin issues and seek professional help if necessary. Heres the overview:")
+    st.write("1.	The user is prompted to upload an image of a skin lesion.")
+    st.write("2.	Once the user uploads an image, it is displayed on the screen and the application runs the image through a machine learning model.")
+    st.write("3.	The model outputs the top 3 predictions for the type of skin cancer (out of 7 classes) that the lesion may be, along with the confidence level for each prediction.")
+    st.write("4.	The user is shown the top 3 predictions and their confidence levels.")
+    st.write("5.	If the model's confidence level is less than 70%, the application informs the user that the skin is either healthy or the input image is unclear. It is also recommended that the user consults a dermatologist for any skin concerns.")
+    st.write ("6.	The application also measures the latency or response time for the model to classify the image, and displays it to the user.")
     st.write("Please note that this model still has room for academic revision as it can only classify the following 7 classes")
-    st.text("'akiec' - squamous cell carcinoma (actinic keratoses dan intraepithelial carcinoma),")
-    st.text("'bcc' - basal cell carcinoma, 'bkl' - benign keratosis (serborrheic keratosis),")
-    st.text("'df' - dermatofibroma, 'nv' - melanocytic nevi, 'mel' - melanoma,")
-    st.text("'vasc' - vascular skin lesions (Cherry Angiomas, Angiokeratomas, Pyogenic Granulomas.")
+    st.write("- ['akiec'](https://en.wikipedia.org/wiki/Squamous-cell_carcinoma) - squamous cell carcinoma (actinic keratoses dan intraepithelial carcinoma),")
+    st.write("- ['bcc'](https://en.wikipedia.org/wiki/Basal-cell_carcinoma) - basal cell carcinoma,")
+    st.write("- ['bkl'](https://en.wikipedia.org/wiki/Seborrheic_keratosis) - benign keratosis (serborrheic keratosis),")
+    st.write("- ['df'](https://en.wikipedia.org/wiki/Dermatofibroma) - dermatofibroma, ")
+    st.write("- ['nv'](https://en.wikipedia.org/wiki/Melanocytic_nevus) - melanocytic nevus, ")
+    st.write("- ['mel'](https://en.wikipedia.org/wiki/Melanoma) - melanoma,")
+    st.write("- ['vasc'](https://en.wikipedia.org/wiki/Vascular_anomaly) - vascular skin (Cherry Angiomas, Angiokeratomas, Pyogenic Granulomas.)")
     st.write("Due to imperfection of the model and a room of improvement for the future, if the probabilities shown are less than 70%, the skin is either healthy or the input image is unclear. This means that the model can be the first diagnostic of your skin illness. As precautions for your skin illness, it is better to do consultation with dermatologist. ")
     st.write(latency[0])
     
