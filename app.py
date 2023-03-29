@@ -4,7 +4,7 @@ import tensorflow as tf
 from tcp_latency import measure_latency
 
 # Measure Latency
-latency = measure_latency(host='35.201.127.49', port=443)
+#latency = measure_latency(host='35.201.127.49', port=443)
 #35.201.127.49:443
 #192.168.18.6:8501
 
@@ -61,7 +61,7 @@ def main():
     st.write("- ['mel'](https://en.wikipedia.org/wiki/Melanoma) - melanoma,")
     st.write("- ['vasc'](https://en.wikipedia.org/wiki/Vascular_anomaly) - vascular skin (Cherry Angiomas, Angiokeratomas, Pyogenic Granulomas.)")
     st.write("Due to imperfection of the model and a room of improvement for the future, if the probabilities shown are less than 70%, the skin is either healthy or the input image is unclear. This means that the model can be the first diagnostic of your skin illness. As precautions for your skin illness, it is better to do consultation with dermatologist. ")
-    st.write(latency[0])
+    #st.write(latency[0])
     
     # Get the input image from the user
     image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
