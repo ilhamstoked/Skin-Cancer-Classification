@@ -1,10 +1,11 @@
 import streamlit as st
 import numpy as np
 import tensorflow as tf
+import time
 from tcp_latency import measure_latency
 
 # Measure Latency
-#latency = measure_latency(host='35.201.127.49', port=443)
+latency = measure_latency(host='35.201.127.49', port=443)
 #35.201.127.49:443
 #192.168.18.6:8501
 
@@ -31,11 +32,17 @@ def classify_image(image):
 
     # Run inference
     with st.spinner('Classifying...'):
+        start_time = time.time()
         interpreter.invoke()
+        end_time = time.time()
+
+    # Calculate the classification duration
+    classifying_duration = end_time - start_time
 
     # Get the output probabilities
     output_data = interpreter.get_tensor(output_details[0]['index'])
-    return output_data[0]
+
+    return output_data[0], classifying_duration
 
 # Define the labels for the 7 classes
 labels = ['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc']
@@ -61,7 +68,7 @@ def main():
     st.write("- ['mel'](https://en.wikipedia.org/wiki/Melanoma) - melanoma,")
     st.write("- ['vasc'](https://en.wikipedia.org/wiki/Vascular_anomaly) - vascular skin (Cherry Angiomas, Angiokeratomas, Pyogenic Granulomas.)")
     st.write("Due to imperfection of the model and a room of improvement for the future, if the probabilities shown are less than 70%, the skin is either healthy or the input image is unclear. This means that the model can be the first diagnostic of your skin illness. As precautions for your skin illness, it is better to do consultation with dermatologist. ")
-    #st.write(latency[0])
+    st.write(latency[0])
     
     # Get the input image from the user
     image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
@@ -72,7 +79,10 @@ def main():
         st.image(image, width=150)
 
         # Run inference on the input image
-        probs = classify_image(image)
+        probs, classifying_duration = classify_image(image)
+
+        # Display the classification duration
+        st.write(f"Classification duration: {classifying_duration:.4f} seconds")
 
         # Display the top 3 predictions
         top_3_indices = np.argsort(probs)[::-1][:3]
