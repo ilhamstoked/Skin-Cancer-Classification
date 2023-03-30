@@ -75,7 +75,7 @@ def main():
 
     # Show the input image
     if image is not None:
-        image = np.array(Image.open(image))
+        image = np.array(Image.open(image).convert("RGB"))
         st.image(image, width=150)
 
         # Run inference on the input image
