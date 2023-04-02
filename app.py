@@ -91,7 +91,7 @@ def main():
             st.write("%d. %s (%.2f%%)" % (i + 1, labels[top_3_indices[i]], probs[top_3_indices[i]] * 100))
             
         latency = measure_latency(host='35.201.127.49', port=443)
-        st.write(latency[0])
+        st.write("Latency:" latency[0])
 
 if __name__ == '__main__':
     main()
