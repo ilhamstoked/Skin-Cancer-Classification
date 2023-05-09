@@ -10,6 +10,7 @@ from tcp_latency import measure_latency
 #192.168.18.6:8501
 
 # Load TensorFlow Lite model
+start_time = time.time()
 interpreter = tf.lite.Interpreter(model_path="InceptionResNetV2Skripsi.tflite")
 interpreter.allocate_tensors()
 
@@ -32,7 +33,6 @@ def classify_image(image):
 
     # Run inference
     with st.spinner('Classifying...'):
-        start_time = time.time()
         interpreter.invoke()
         end_time = time.time()
 
