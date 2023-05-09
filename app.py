@@ -34,10 +34,7 @@ def classify_image(image):
     # Run inference
     with st.spinner('Classifying...'):
         interpreter.invoke()
-        end_time = time.time()
 
-    # Calculate the classification duration
-    classifying_duration = end_time - start_time
 
     # Get the output probabilities
     output_data = interpreter.get_tensor(output_details[0]['index'])
@@ -93,6 +90,10 @@ def main():
         latency = measure_latency(host='35.201.127.49', port=443)
         st.write("Network Latency:")
         st.write(latency[0])
+        end_time = time.time()
 
+    # Calculate the classification duration
+    classifying_duration = end_time - start_time
+    
 if __name__ == '__main__':
     main()
